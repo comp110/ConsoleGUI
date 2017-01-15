@@ -7,7 +7,6 @@ public class Demo {
     Console console = new Console();
 
     console.print("Hello, world");
-    console.speed(1.0);
     console.print('c');
 
     console.speed(0.5);
