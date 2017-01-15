@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<ScrollPane fx:id="_scroll" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480.0" minViewportHeight="480.0" minWidth="-Infinity" prefViewportHeight="480.0" style="-fx-background-color: #222;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="comp110.Shell">
+   <content>
+      <VBox fx:id="_output" maxWidth="-Infinity" minHeight="480.0" minWidth="-Infinity" prefWidth="640.0" style="-fx-background-color: #222;">
+         <opaqueInsets>
+            <Insets bottom="8.0" />
+         </opaqueInsets>
+      </VBox>
+   </content>
+</ScrollPane>
