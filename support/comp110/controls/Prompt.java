@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 
-public class Prompt extends BorderPane {
+public class Prompt<T> extends BorderPane {
 
   @FXML
   private Label _prompt;
@@ -25,9 +25,9 @@ public class Prompt extends BorderPane {
   @FXML
   private Label _type;
 
-  private CountDownLatch _latch;
+  private FutureValue<T> _future;
 
-  public Prompt(String prompt, String type, CountDownLatch l) {
+  public Prompt(String prompt, String type, FutureValue<T> future) {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("Prompt.fxml"));
     loader.setRoot(this);
     loader.setController(this);
@@ -38,7 +38,7 @@ public class Prompt extends BorderPane {
       _type.setText(type);
       _input.setOnAction(this::handleInput);
       _send.setOnAction(this::handleInput);
-      _latch = l;
+      _future = future;
     } catch (IOException exception) {
       exception.printStackTrace();
     }
@@ -51,7 +51,7 @@ public class Prompt extends BorderPane {
   public void handleInput(ActionEvent e) {
     _input.setDisable(true);
     _send.setDisable(true);
-    _latch.countDown();
+    _future.set(_input.getText());
   }
 
 }

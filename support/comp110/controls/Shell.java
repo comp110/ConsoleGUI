@@ -42,9 +42,13 @@ public class Shell {
     addNode(new Output("" + c, "char"));
   }
 
-  public void promptString(String s, CountDownLatch cdl) {
-    Prompt p = new Prompt(s, "String", cdl);
-    addNode(p);
+//  public void promptString(String s, CountDownLatch cdl) {
+//    Prompt p = new Prompt(s, "String", cdl);
+//    addNode(p);
+//  }
+  
+  public void promptString2(String s, FutureValue<?> future) {
+    Prompt p = new Prompt(s, "String", future);
   }
 
   public String readString() {

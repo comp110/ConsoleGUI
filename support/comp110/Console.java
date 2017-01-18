@@ -2,7 +2,9 @@ package comp110;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Future;
+import java.util.concurrent.FutureTask;
 
+import comp110.controls.FutureValue;
 import comp110.controls.Shell;
 
 public class Console {
@@ -54,22 +56,30 @@ public class Console {
     });
   }
 
-  public String askForString(String prompt) {
-    CountDownLatch cdl = new CountDownLatch(1);
+//  public String askForString(String prompt) {
+//    CountDownLatch cdl = new CountDownLatch(1);
+//    run(() -> {
+//      _shell.promptString(prompt, cdl);
+//    });
+//
+//    try {
+//      cdl.await();
+//
+//      return _shell.readString();
+//
+//    } catch (Exception e) {
+//
+//    }
+//
+//    return null;
+//  }
+//  
+  public String askForString2(String prompt) {
+    FutureValue<String> result = new FutureValue<>();
     run(() -> {
-      _shell.promptString(prompt, cdl);
+      _shell.promptString2(prompt, result);
     });
-
-    try {
-      cdl.await();
-
-      return _shell.readString();
-
-    } catch (Exception e) {
-
-    }
-
-    return null;
+    return result.get();
   }
 
   private void run(VoidMethod m) {
