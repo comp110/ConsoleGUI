@@ -1,4 +1,4 @@
-package comp110;
+package comp110.controls;
 
 import java.io.IOException;
 

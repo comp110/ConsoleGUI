@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="64.0" minWidth="640.0" prefWidth="640.0" style="-fx-background-color: #000;" type="javafx.scene.layout.BorderPane" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <VBox BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="64.0" />
+         </BorderPane.margin>
+         <children>
+            <Label fx:id="_prompt" alignment="CENTER" lineSpacing="20.0" text="Prompt" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="16.0" />
+               </VBox.margin>
+            </Label>
+            <HBox>
+               <children>
+                  <TextField fx:id="_input" minWidth="448.0" style="-fx-background-color: #222; -fx-border-color: white; -fx-border-radius: 8; -fx-text-fill: white;">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="_send" minHeight="32.0" minWidth="64.0" mnemonicParsing="false" style="-fx-background-color: #000; -fx-border-color: #fff;" text="Send" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="16.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <Label fx:id="_type" opacity="0.8" text="Type" textFill="#7bafd4">
+               <font>
+                  <Font name="Consolas" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="16.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+   </left>
+</fx:root>

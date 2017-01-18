@@ -1,4 +1,7 @@
-package comp110;
+package comp110.controls;
+
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Future;
 
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -37,6 +40,17 @@ public class Shell {
 
   public void print(char c) {
     addNode(new Output("" + c, "char"));
+  }
+
+  public void promptString(String s, CountDownLatch cdl) {
+    Prompt p = new Prompt(s, "String", cdl);
+    addNode(p);
+  }
+
+  public String readString() {
+    Node n = _output.getChildren().get(_output.getChildren().size() - 1);
+    Prompt p = (Prompt) n;
+    return p.getInput();
   }
 
   private void handleAutoScroll(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {

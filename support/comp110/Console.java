@@ -1,14 +1,23 @@
 package comp110;
 
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Future;
+
+import comp110.controls.Shell;
+
 public class Console {
 
   private Shell _shell;
 
   private double _speed;
 
-  public Console() {
+  public Console(String title) {
     _speed = 1.0;
-    _shell = AppBase.instance().loadWindow("Console", Shell.class, "Shell.fxml");
+    _shell = AppBase.instance().loadWindow(title, Shell.class, "Shell.fxml");
+  }
+
+  public Console() {
+    this("CarolinaConsole");
   }
 
   public void speed(double speed) {
@@ -45,8 +54,25 @@ public class Console {
     });
   }
 
-  private void run(VoidMethod m) {
+  public String askForString(String prompt) {
+    CountDownLatch cdl = new CountDownLatch(1);
+    run(() -> {
+      _shell.promptString(prompt, cdl);
+    });
 
+    try {
+      cdl.await();
+
+      return _shell.readString();
+
+    } catch (Exception e) {
+
+    }
+
+    return null;
+  }
+
+  private void run(VoidMethod m) {
     AppBase.instance().runFX(() -> {
       m.run();
       return null;
@@ -58,7 +84,6 @@ public class Console {
       } catch (InterruptedException e) {
       }
     }
-
   }
 
 }
