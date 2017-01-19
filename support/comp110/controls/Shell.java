@@ -1,8 +1,5 @@
 package comp110.controls;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Future;
-
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -42,19 +39,40 @@ public class Shell {
     addNode(new Output("" + c, "char"));
   }
 
-//  public void promptString(String s, CountDownLatch cdl) {
-//    Prompt p = new Prompt(s, "String", cdl);
-//    addNode(p);
-//  }
-  
-  public void promptString2(String s, FutureValue<?> future) {
-    Prompt p = new Prompt(s, "String", future);
+  public void print(Object o) {
+    if (o == this) {
+      addNode(new Output("I'm printing myself. That makes me self-aware. Strange.", "Console"));
+    } else {
+      String fqcn = o.getClass().getTypeName();
+      System.out.println(fqcn);
+      int lastDot = fqcn.lastIndexOf('.');
+      addNode(new Output(o.toString(), fqcn.substring(lastDot + 1)));
+    }
   }
 
-  public String readString() {
-    Node n = _output.getChildren().get(_output.getChildren().size() - 1);
-    Prompt p = (Prompt) n;
-    return p.getInput();
+  public void promptInt(String s, ParsedFutureValue<Integer> future) {
+    Prompt<Integer> p = new Prompt<>(s, "int", future);
+    addNode(p);
+  }
+
+  public void promptDouble(String s, ParsedFutureValue<Double> future) {
+    Prompt<Double> p = new Prompt<>(s, "double", future);
+    addNode(p);
+  }
+
+  public void promptBoolean(String s, ParsedFutureValue<Boolean> future) {
+    Prompt<Boolean> p = new Prompt<>(s, "boolean", future);
+    addNode(p);
+  }
+
+  public void promptChar(String s, ParsedFutureValue<Character> future) {
+    Prompt<Character> p = new Prompt<>(s, "char", future);
+    addNode(p);
+  }
+
+  public void promptString(String s, ParsedFutureValue<String> future) {
+    Prompt<String> p = new Prompt<>(s, "String", future);
+    addNode(p);
   }
 
   private void handleAutoScroll(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {

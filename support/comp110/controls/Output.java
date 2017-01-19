@@ -21,7 +21,6 @@ public class Output extends BorderPane {
     loader.setController(this);
     try {
       loader.load();
-      BorderPane bp = loader.getRoot();
       _value.setText(value);
       _type.setText(type);
     } catch (IOException exception) {
