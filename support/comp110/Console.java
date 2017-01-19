@@ -71,7 +71,11 @@ public class Console {
     });
   }
 
-  public char askForChar(String prompt) {
+  public char promptChar() {
+    return promptChar("Please enter a char value:");
+  }
+
+  public char promptChar(String prompt) {
     ParsedFutureValue<Character> result = new ParsedFutureValue<>(Parser.forChars());
     run(() -> {
       _shell.promptChar(prompt, result);
@@ -79,7 +83,11 @@ public class Console {
     return result.get().charValue();
   }
 
-  public boolean askForBoolean(String prompt) {
+  public boolean promptBoolean() {
+    return promptBoolean("Please enter a boolean value:");
+  }
+
+  public boolean promptBoolean(String prompt) {
     ParsedFutureValue<Boolean> result = new ParsedFutureValue<>(Parser.forBooleans());
     run(() -> {
       _shell.promptBoolean(prompt, result);
@@ -87,7 +95,23 @@ public class Console {
     return result.get().booleanValue();
   }
 
-  public double readDouble(String prompt) {
+  public int promptInt() {
+    return promptInt("Please enter an int value:");
+  }
+
+  public int promptInt(String prompt) {
+    ParsedFutureValue<Integer> result = new ParsedFutureValue<>(Parser.forInts());
+    run(() -> {
+      _shell.promptInt(prompt, result);
+    });
+    return result.get().intValue();
+  }
+
+  public double promptDouble() {
+    return promptDouble("Please enter a double value:");
+  }
+
+  public double promptDouble(String prompt) {
     ParsedFutureValue<Double> result = new ParsedFutureValue<>(Parser.forDoubles());
     run(() -> {
       _shell.promptDouble(prompt, result);
@@ -95,20 +119,16 @@ public class Console {
     return result.get().doubleValue();
   }
 
-  public String askForString(String prompt) {
+  public String promptString() {
+    return promptString("Please enter a String value:");
+  }
+
+  public String promptString(String prompt) {
     ParsedFutureValue<String> result = new ParsedFutureValue<>(Parser.forStrings());
     run(() -> {
       _shell.promptString(prompt, result);
     });
     return result.get();
-  }
-
-  public int askForInt(String prompt) {
-    ParsedFutureValue<Integer> result = new ParsedFutureValue<>(Parser.forInts());
-    run(() -> {
-      _shell.promptInt(prompt, result);
-    });
-    return result.get().intValue();
   }
 
   private void run(VoidMethod m) {

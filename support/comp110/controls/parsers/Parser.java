@@ -21,7 +21,18 @@ public class Parser {
   }
 
   public static ParseFunction<Boolean> forBooleans() {
-    return Boolean::parseBoolean;
+    return (s) -> {
+      switch (s.toLowerCase()) {
+      case "t":
+      case "true":
+        return true;
+      case "f":
+      case "false":
+        return false;
+      default:
+        throw new RuntimeException("Booleans must be t/true or f/false");
+      }
+    };
   }
 
   public static ParseFunction<String> forStrings() {
