@@ -1,23 +1,30 @@
 package comp110;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Future;
-
+import comp110.controls.ParsedFutureValue;
 import comp110.controls.Shell;
+import comp110.controls.parsers.Parser;
 
 public class Console {
 
-  private Shell _shell;
+  public static Console out;
 
+  private String _title;
+  private boolean _showing;
+  private Shell _shell;
   private double _speed;
 
+  static {
+    out = new Console("COMP110 Console");
+  }
+
   public Console(String title) {
+    _title = title;
+    _showing = false;
     _speed = 1.0;
-    _shell = AppBase.instance().loadWindow(title, Shell.class, "Shell.fxml");
   }
 
   public Console() {
-    this("CarolinaConsole");
+    this("COMP110 Console");
   }
 
   public void speed(double speed) {
@@ -54,25 +61,62 @@ public class Console {
     });
   }
 
-  public String askForString(String prompt) {
-    CountDownLatch cdl = new CountDownLatch(1);
+  public void print(Object o) {
     run(() -> {
-      _shell.promptString(prompt, cdl);
+      if (o == this) {
+        _shell.print(_shell);
+      } else {
+        _shell.print(o);
+      }
     });
+  }
 
-    try {
-      cdl.await();
+  public char askForChar(String prompt) {
+    ParsedFutureValue<Character> result = new ParsedFutureValue<>(Parser.forChars());
+    run(() -> {
+      _shell.promptChar(prompt, result);
+    });
+    return result.get().charValue();
+  }
 
-      return _shell.readString();
+  public boolean askForBoolean(String prompt) {
+    ParsedFutureValue<Boolean> result = new ParsedFutureValue<>(Parser.forBooleans());
+    run(() -> {
+      _shell.promptBoolean(prompt, result);
+    });
+    return result.get().booleanValue();
+  }
 
-    } catch (Exception e) {
+  public double readDouble(String prompt) {
+    ParsedFutureValue<Double> result = new ParsedFutureValue<>(Parser.forDoubles());
+    run(() -> {
+      _shell.promptDouble(prompt, result);
+    });
+    return result.get().doubleValue();
+  }
 
-    }
+  public String askForString(String prompt) {
+    ParsedFutureValue<String> result = new ParsedFutureValue<>(Parser.forStrings());
+    run(() -> {
+      _shell.promptString(prompt, result);
+    });
+    return result.get();
+  }
 
-    return null;
+  public int askForInt(String prompt) {
+    ParsedFutureValue<Integer> result = new ParsedFutureValue<>(Parser.forInts());
+    run(() -> {
+      _shell.promptInt(prompt, result);
+    });
+    return result.get().intValue();
   }
 
   private void run(VoidMethod m) {
+    if (!_showing) {
+      _shell = AppBase.instance().loadWindow(_title, Shell.class, "Shell.fxml");
+      _showing = true;
+    }
+
     AppBase.instance().runFX(() -> {
       m.run();
       return null;
@@ -84,6 +128,10 @@ public class Console {
       } catch (InterruptedException e) {
       }
     }
+  }
+
+  public String toString() {
+    return "Console (\"" + _title + "\")";
   }
 
 }
