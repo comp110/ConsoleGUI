@@ -12,9 +12,12 @@ public class ParsedFutureValue<T> {
 
   private T _value;
 
+  private boolean _exiting;
+
   public ParsedFutureValue(ParseFunction<T> parser) {
     _cdl = new CountDownLatch(1);
     _parser = parser;
+    _exiting = false;
   }
 
   public boolean test(String input) {
@@ -39,11 +42,19 @@ public class ParsedFutureValue<T> {
   public T get() {
     try {
       _cdl.await();
+      if (_exiting) {
+        System.exit(0);
+      }
     } catch (Exception e) {
       e.printStackTrace();
       throw new RuntimeException(e);
     }
     return _value;
+  }
+
+  public void exit() {
+    _exiting = true;
+    _cdl.countDown();
   }
 
 }

@@ -4,154 +4,124 @@ import comp110.controls.ParsedFutureValue;
 import comp110.controls.Shell;
 import comp110.controls.parsers.Parser;
 
-public class Console {
+/**
+ * Console is a proxy to a backing implementation. We do this so that we can
+ * instrument one console for user interactivity and another for grading.
+ * 
+ * @author Kris Jordan <kris@cs.unc.edu>
+ */
+public class Console implements IConsole {
 
-  public static Console out;
+	public static IConsole out;
 
-  private String _title;
-  private boolean _showing;
-  private Shell _shell;
-  private double _speed;
+	private IConsole _impl;
 
-  static {
-    out = new Console("COMP110 Console");
-  }
+	static {
+		out = ConsoleFactory.getConsole();
+		out.setTitle("COMP110 Console");
+	}
 
-  public Console(String title) {
-    _title = title;
-    _showing = false;
-    _speed = 1.0;
-  }
+	public Console(String title) {
+		_impl = ConsoleFactory.getConsole();
+		_impl.setTitle(title);
+	}
 
-  public Console() {
-    this("COMP110 Console");
-  }
+	public Console() {
+		this("COMP110 Console");
+	}
 
-  public void speed(double speed) {
-    _speed = speed;
-  }
+	public String toString() {
+		return _impl.toString();
+	}
 
-  public void print(String s) {
-    run(() -> {
-      _shell.print(s);
-    });
-  }
+	@Override
+	public void setTitle(String title) {
+		_impl.setTitle(title);
+	}
 
-  public void print(int i) {
-    run(() -> {
-      _shell.print(i);
-    });
-  }
+	@Override
+	public void speed(double speed) {
+		_impl.speed(speed);
+	}
 
-  public void print(double d) {
-    run(() -> {
-      _shell.print(d);
-    });
-  }
+	@Override
+	public void print(String s) {
+		_impl.print(s);
+	}
 
-  public void print(char c) {
-    run(() -> {
-      _shell.print(c);
-    });
-  }
+	@Override
+	public void print(int i) {
+		_impl.print(i);
+	}
 
-  public void print(boolean b) {
-    run(() -> {
-      _shell.print(b);
-    });
-  }
+	@Override
+	public void print(double d) {
+		_impl.print(d);
+	}
 
-  public void print(Object o) {
-    run(() -> {
-      if (o == this) {
-        _shell.print(_shell);
-      } else {
-        _shell.print(o);
-      }
-    });
-  }
+	@Override
+	public void print(char c) {
+		_impl.print(c);
+	}
 
-  public char promptChar() {
-    return promptChar("Please enter a char value:");
-  }
+	@Override
+	public void print(boolean b) {
+		_impl.print(b);
+	}
 
-  public char promptChar(String prompt) {
-    ParsedFutureValue<Character> result = new ParsedFutureValue<>(Parser.forChars());
-    run(() -> {
-      _shell.promptChar(prompt, result);
-    });
-    return result.get().charValue();
-  }
+	@Override
+	public void print(Object o) {
+		_impl.print(o);
+	}
 
-  public boolean promptBoolean() {
-    return promptBoolean("Please enter a boolean value:");
-  }
+	@Override
+	public char promptChar() {
+		return _impl.promptChar();
+	}
 
-  public boolean promptBoolean(String prompt) {
-    ParsedFutureValue<Boolean> result = new ParsedFutureValue<>(Parser.forBooleans());
-    run(() -> {
-      _shell.promptBoolean(prompt, result);
-    });
-    return result.get().booleanValue();
-  }
+	@Override
+	public char promptChar(String prompt) {
+		return _impl.promptChar(prompt);
+	}
 
-  public int promptInt() {
-    return promptInt("Please enter an int value:");
-  }
+	@Override
+	public boolean promptBoolean() {
+		return _impl.promptBoolean();
+	}
 
-  public int promptInt(String prompt) {
-    ParsedFutureValue<Integer> result = new ParsedFutureValue<>(Parser.forInts());
-    run(() -> {
-      _shell.promptInt(prompt, result);
-    });
-    return result.get().intValue();
-  }
+	@Override
+	public boolean promptBoolean(String prompt) {
+		return _impl.promptBoolean(prompt);
+	}
 
-  public double promptDouble() {
-    return promptDouble("Please enter a double value:");
-  }
+	@Override
+	public int promptInt() {
+		return _impl.promptInt();
+	}
 
-  public double promptDouble(String prompt) {
-    ParsedFutureValue<Double> result = new ParsedFutureValue<>(Parser.forDoubles());
-    run(() -> {
-      _shell.promptDouble(prompt, result);
-    });
-    return result.get().doubleValue();
-  }
+	@Override
+	public int promptInt(String prompt) {
+		return _impl.promptInt(prompt);
+	}
 
-  public String promptString() {
-    return promptString("Please enter a String value:");
-  }
+	@Override
+	public double promptDouble() {
+		return _impl.promptDouble();
+	}
 
-  public String promptString(String prompt) {
-    ParsedFutureValue<String> result = new ParsedFutureValue<>(Parser.forStrings());
-    run(() -> {
-      _shell.promptString(prompt, result);
-    });
-    return result.get();
-  }
+	@Override
+	public double promptDouble(String prompt) {
+		return _impl.promptDouble(prompt);
+	}
 
-  private void run(VoidMethod m) {
-    if (!_showing) {
-      _shell = AppBase.instance().loadWindow(_title, Shell.class, "Shell.fxml");
-      _showing = true;
-    }
+	@Override
+	public String promptString() {
+		return _impl.promptString();
+	}
 
-    AppBase.instance().runFX(() -> {
-      m.run();
-      return null;
-    });
-
-    if (_speed <= 1.0 && _speed > 0.0) {
-      try {
-        Thread.sleep((long) (1000L - (1000.0 * _speed)));
-      } catch (InterruptedException e) {
-      }
-    }
-  }
-
-  public String toString() {
-    return "Console (\"" + _title + "\")";
-  }
+	@Override
+	public String promptString(String prompt) {
+		return _impl.promptString(prompt);
+	}
 
 }

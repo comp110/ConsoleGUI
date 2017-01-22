@@ -7,12 +7,12 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="64.0" minWidth="640.0" prefWidth="640.0" style="-fx-background-color: #000;" type="javafx.scene.layout.BorderPane" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <Label fx:id="_value" contentDisplay="CENTER" lineSpacing="20.0" text="Value" textFill="WHITE" wrapText="true" BorderPane.alignment="CENTER_LEFT">
+      <Label fx:id="_value" contentDisplay="CENTER" text="Value" textFill="WHITE" wrapText="true" BorderPane.alignment="CENTER_LEFT">
          <font>
             <Font size="20.0" />
          </font>
          <BorderPane.margin>
-            <Insets left="64.0" right="16.0" top="16.0" />
+            <Insets left="64.0" right="64.0" top="16.0" />
          </BorderPane.margin>
       </Label>
    </center>
