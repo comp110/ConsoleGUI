@@ -53,6 +53,12 @@ public class TestConsole implements IConsole {
 	}
 
 	@Override
+	public void setTheme(String[] theme) {
+		// TODO Manually-generated method stub
+		
+	}
+	
+	@Override
 	public char promptChar() {
 		// TODO Auto-generated method stub
 		return 0;
