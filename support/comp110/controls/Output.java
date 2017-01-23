@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Paint;
 
 public class Output extends BorderPane {
 
@@ -26,6 +27,20 @@ public class Output extends BorderPane {
     } catch (IOException exception) {
       exception.printStackTrace();
     }
+  }
+  
+  //===============Styling Methods===============//
+  
+  public void setBackgroundColor(String color) {
+	  this.setStyle("-fx-background-color: " + color + ";");
+  }
+  
+  public void setValueTextColor(String color) {
+	  _value.setTextFill(Paint.valueOf(color));
+  }
+  
+  public void setTypeTextColor(String color) {
+	  _type.setTextFill(Paint.valueOf(color));
   }
 
 }
