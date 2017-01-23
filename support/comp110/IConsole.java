@@ -17,6 +17,8 @@ public interface IConsole {
 	void print(boolean b);
 
 	void print(Object o);
+	
+	void setTheme(String[] theme);
 
 	char promptChar();
 
