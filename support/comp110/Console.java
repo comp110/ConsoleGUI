@@ -18,11 +18,19 @@ public class Console implements IConsole {
 
 	static {
 		out = ConsoleFactory.getConsole();
+		out.setTheme(Theme.COMP110);
 		out.setTitle("COMP110 Console");
 	}
 
 	public Console(String title) {
 		_impl = ConsoleFactory.getConsole();
+		_impl.setTheme(Theme.COMP110);
+		_impl.setTitle(title);
+	}
+	
+	public Console(String title, String[] theme) {
+		_impl = ConsoleFactory.getConsole();
+		_impl.setTheme(theme);
 		_impl.setTitle(title);
 	}
 
@@ -72,6 +80,10 @@ public class Console implements IConsole {
 	@Override
 	public void print(Object o) {
 		_impl.print(o);
+	}
+	
+	public void setTheme(String[] theme) {
+		_impl.setTheme(theme);
 	}
 
 	@Override
