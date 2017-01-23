@@ -27,13 +27,17 @@ public class Demo {
 
     console.print("goodbye.");
 	  
-
-	  Console c = new Console("COMP110");
-	  c.setTheme(Theme.GOOGLE_LIGHT);
-	  
-	  char chario = c.promptChar();
-	  
-	  c.print(chario);
+    //Theme-related stuff...
+    
+    Console c = new Console("COMP110", Theme.GOOGLE_LIGHT); //Set theme with Constructor
+  
+    c.setTheme(Theme.COMP110); //Set theme using setTheme method (has effect on theme)
+  
+    char chario = c.promptChar();
+  
+    c.setTheme(Theme.UNC); //No effect on theme because FXConsole's run method has already been called
+  
+    c.print(chario);
 	  
   }
 
