@@ -1,111 +1,98 @@
 package comp110.test;
 
-import comp110.IConsole;
-import comp110.test.methods.MethodCall;
 import comp110.test.methods.Print;
 import comp110.test.methods.Prompt;
 import comp110.test.values.DoubleValue;
 
-public class TestConsole implements IConsole {
+public class RecordedConsole {
 
 	private Session _expected;
-	private Session _actual;
 
-	public TestConsole() {
-		_actual = new Session();
-	}
-
-	public void setExpected(Session expected) {
-		_expected = expected;
+	public RecordedConsole() {
+		_expected = new Session();
 	}
 
 	public Session getSession() {
-		return _actual;
+		return _expected;
 	}
 
 	public void setTitle(String title) {
+
 	}
 
 	public void speed(double speed) {
+
 	}
 
 	public void print(String s) {
-		Print<String> actual = new Print<String>(s);
-		_actual.log(actual);
-		_expected.test(actual);
+		_expected.log(new Print<String>(s));
 	}
 
 	public void print(int i) {
-		System.out.println(i);
+		_expected.log(new Print<Integer>(i));
 	}
 
 	public void print(double d) {
+		_expected.log(new Print<Double>(d));
 	}
 
-	@Override
 	public void print(char c) {
+		_expected.log(new Print<Character>(c));
 	}
 
-	@Override
 	public void print(boolean b) {
+		_expected.log(new Print<Boolean>(b));
 	}
 
-	@Override
 	public void print(Object o) {
+		_expected.log(new Print<Object>(o));
 	}
 
-	@Override
 	public char promptChar() {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
 	public char promptChar(String prompt) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
 	public boolean promptBoolean() {
+		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
 	public boolean promptBoolean(String prompt) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
 	public int promptInt() {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
 	public int promptInt(String prompt) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
-	public double promptDouble() {
-		return 0;
+	public void promptDouble(double input) {
+		_expected.log(new Prompt(new DoubleValue(input)));
 	}
 
-	@Override
-	public double promptDouble(String prompt) {
-		Prompt actual = new Prompt(prompt);
-		_actual.log(actual);
-		Prompt expected = (Prompt) _expected.test(actual);
-		DoubleValue expectedValue = (DoubleValue) expected.getValue();
-		actual.setResponse(expectedValue);
-		return expectedValue.get();
+	public void promptDouble(String prompt, double input) {
+		_expected.log(new Prompt(prompt, new DoubleValue(input)));
 	}
 
-	@Override
 	public String promptString() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public String promptString(String prompt) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
