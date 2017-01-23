@@ -10,6 +10,7 @@ public class FXConsole implements IConsole {
 	private double _speed;
 	private Shell _shell;
 	private String _title = "Carolina Console";
+	private String[] _theme;
 
 	public void setTitle(String title) {
 		_title = title;
@@ -118,10 +119,15 @@ public class FXConsole implements IConsole {
 		});
 		return result.get();
 	}
+	
+	public void setTheme(String[] theme) {
+		_theme = theme;
+	}
 
 	private void run(VoidMethod m) {
 		if (!_showing) {
 			_shell = AppBase.instance().loadWindow(_title, Shell.class, "Shell.fxml");
+			_shell.setTheme(_theme);
 			_showing = true;
 		}
 
