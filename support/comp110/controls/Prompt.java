@@ -42,21 +42,21 @@ public class Prompt<T> extends BorderPane {
 		loader.setRoot(this);
 		loader.setController(this);
 		try {
-			loader.load();
-			_prompt.setText(prompt);
-			_type.setText(type);
-			_input.setOnAction(this::handleInput);
-			_input.textProperty().addListener(this::handleChange);
-			_send.setOnAction(this::handleInput);
-			_future = future;
-			this._borderHintColor = "#FFF";
-		    this._inputTextFill = "#FFF";
-		    this._inputBackgroundColor = "#FFF";
-		    this._sendBackgroundColor = "#FFF";
-		    this._handleInputBorderHintColor = "#FFF";
-		    this._handleChangeFalseFutureTestColor = "#FFF";
-		    this._handleChangeTrueFutureTestColor = "#FFF";
-		    setBorderHint("#FFF");
+		        loader.load();
+		        _prompt.setText(prompt);
+		        _type.setText(type);
+		        _input.setOnAction(this::handleInput);
+		        _input.textProperty().addListener(this::handleChange);
+		        _send.setOnAction(this::handleInput);
+		        _future = future;
+		        this._borderHintColor = "#FFF";
+		        this._inputTextFill = "#FFF";
+		        this._inputBackgroundColor = "#FFF";
+		        this._sendBackgroundColor = "#FFF";
+		        this._handleInputBorderHintColor = "#FFF";
+		        this._handleChangeFalseFutureTestColor = "#FFF";
+		        this._handleChangeTrueFutureTestColor = "#FFF";
+		        setBorderHint("#FFF");
 		} catch (IOException exception) {
 			exception.printStackTrace();
 		}
@@ -90,8 +90,8 @@ public class Prompt<T> extends BorderPane {
 	
 	public void setBorderHint(String color) {
 		this._borderHintColor = color;
-	    _input.setStyle("-fx-background-color: " + this._inputBackgroundColor + "; -fx-border-color: " + color + "; -fx-border-radius: 8; -fx-text-fill: " + this._inputTextFill + ";");
-	    _send.setStyle("-fx-background-color: " + this._sendBackgroundColor + "; -fx-border-color: " + color + ";");
+	        _input.setStyle("-fx-background-color: " + this._inputBackgroundColor + "; -fx-border-color: " + color + "; -fx-border-radius: 8; -fx-text-fill: " + this._inputTextFill + ";");
+	        _send.setStyle("-fx-background-color: " + this._sendBackgroundColor + "; -fx-border-color: " + color + ";");
 	  }
 
 	  public void setBackgroundColor(String color) {
