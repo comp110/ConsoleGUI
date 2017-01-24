@@ -82,4 +82,61 @@ public class Theme {
 			
 	};
 	
+	public static final String[] PRIMARY_COLORS = {
+			
+			//SHELL
+			/*Scroll Background*/ "#FFFA14", /*Output Background*/ "#FFFA14",
+			
+			//PROMPT
+			/*Inactive Border Hint*/ "#FF1414", /*Active Border Hint*/ "#FF1414", 
+			/*Valid Input Border Hint*/ "#FF1414", /*Invalid Input Border Hint*/ "#FF1414", 
+			/*Background*/ "#143DFF", /*Data Type Text Fill*/ "#FFF", 
+			/*Input Field Background*/ "#FF1414", /*Input Text Fill*/ "#FFFA14", 
+			/*Prompt Text Fill*/ "#FFFA14", /*Send Button Background*/ "#FF1414", 
+			/*Send Button Text Fill*/ "#FFFA14",
+			
+			//OUTPUT
+			/*Background*/ "#FF1414", /*Output Text Fill*/ "#FFFA14", 
+			/*Data Type Text Fill*/ "#FFF"
+			
+	};
+	
+	public static final String[] PLAIN = {
+			
+			//SHELL
+			/*Scroll Background*/ "#FFF", /*Output Background*/ "#FFF",
+			
+			//PROMPT
+			/*Inactive Border Hint*/ "#FFF", /*Active Border Hint*/ "#FFF", 
+			/*Valid Input Border Hint*/ "#00B800", /*Invalid Input Border Hint*/ "#B80000", 
+			/*Background*/ "#FFF", /*Data Type Text Fill*/ "#A5A5A5", 
+			/*Input Field Background*/ "#FFF", /*Input Text Fill*/ "#000", 
+			/*Prompt Text Fill*/ "#000", /*Send Button Background*/ "#FFF", 
+			/*Send Button Text Fill*/ "#000",
+			
+			//OUTPUT
+			/*Background*/ "#FFF", /*Output Text Fill*/ "#000", 
+			/*Data Type Text Fill*/ "#A5A5A5"
+			
+	};
+	
+	public static final String[] NIGHT_VISION = {
+			
+			//SHELL
+			/*Scroll Background*/ "#007D07", /*Output Background*/ "#007D07",
+			
+			//PROMPT
+			/*Inactive Border Hint*/ "#007D07", /*Active Border Hint*/ "#007D07", 
+			/*Valid Input Border Hint*/ "#000", /*Invalid Input Border Hint*/ "#555555", 
+			/*Background*/ "#007D07", /*Data Type Text Fill*/ "#383838", 
+			/*Input Field Background*/ "#007D07", /*Input Text Fill*/ "#000", 
+			/*Prompt Text Fill*/ "#000", /*Send Button Background*/ "#007D07", 
+			/*Send Button Text Fill*/ "#000",
+			
+			//OUTPUT
+			/*Background*/ "#007D07", /*Output Text Fill*/ "#000", 
+			/*Data Type Text Fill*/ "#383838"
+			
+	};
+	
 }
