@@ -35,6 +35,9 @@ public class TestConsole implements IConsole {
 		_expected.test(actual);
 	}
 
+	public void print() {
+	}
+
 	public void print(int i) {
 		System.out.println(i);
 	}

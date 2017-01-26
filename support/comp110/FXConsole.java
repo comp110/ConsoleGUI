@@ -19,6 +19,12 @@ public class FXConsole implements IConsole {
 		_speed = speed;
 	}
 
+	public void print() {
+		run(() -> {
+			_shell.print();
+		});
+	}
+
 	public void print(String s) {
 		run(() -> {
 			_shell.print(s);

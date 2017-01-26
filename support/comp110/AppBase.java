@@ -22,6 +22,8 @@ public class AppBase extends Application {
 
 	private static double _startOffset = 0.0;
 
+	private static int _windows = 0;
+
 	/*
 	 * Singleton pattern.
 	 */
@@ -73,7 +75,12 @@ public class AppBase extends Application {
 				T controller = fxmlLoader.getController();
 				stage.setOnCloseRequest((e) -> {
 					((Controller) controller).handleClose();
+					_windows--;
+					if (_windows == 0) {
+						System.exit(0);
+					}
 				});
+				_windows++;
 				return controller;
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -88,6 +95,12 @@ public class AppBase extends Application {
 			try {
 				T controller = klass.newInstance();
 				Stage stage = new Stage();
+				stage.setOnCloseRequest((e) -> {
+					_windows--;
+					if (_windows == 0) {
+						System.exit(0);
+					}
+				});
 				controller.start(stage);
 				return controller;
 			} catch (Exception e) {
