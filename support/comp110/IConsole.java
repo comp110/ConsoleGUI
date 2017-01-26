@@ -6,6 +6,8 @@ public interface IConsole {
 
 	void speed(double speed);
 
+	void print();
+
 	void print(String s);
 
 	void print(int i);

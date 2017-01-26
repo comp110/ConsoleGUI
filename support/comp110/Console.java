@@ -45,6 +45,11 @@ public class Console implements IConsole {
 	}
 
 	@Override
+	public void print() {
+		_impl.print();
+	}
+
+	@Override
 	public void print(String s) {
 		_impl.print(s);
 	}
