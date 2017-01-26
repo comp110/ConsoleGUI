@@ -94,6 +94,9 @@ public class Shell implements Controller {
 
 	private void addNode(Node n) {
 		_output.getChildren().add(n);
+		if (_output.getChildren().size() > 1000) {
+			_output.getChildren().remove(0);
+		}
 		VBox.setMargin(n, new Insets(0, 0, 1, 0));
 	}
 
