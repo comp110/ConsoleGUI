@@ -27,6 +27,16 @@ public class Shell implements Controller {
 		}
 	}
 
+	public void alert(String message, ParsedFutureValue<Void> future) {
+		Alert a = new Alert(message, future);
+		addNode(a);
+	}
+
+	public void confirm(String message, ParsedFutureValue<Boolean> future) {
+		Confirm c = new Confirm(message, future);
+		addNode(c);
+	}
+
 	public void print() {
 		addNode(new Output("", ""));
 	}

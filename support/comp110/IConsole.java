@@ -20,6 +20,10 @@ public interface IConsole {
 
 	void print(Object o);
 
+	void alert(String message);
+
+	boolean confirm(String question);
+
 	char promptChar();
 
 	char promptChar(String prompt);

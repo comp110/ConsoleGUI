@@ -2,31 +2,19 @@ package comp110;
 
 public class Demo {
 
-  public static void main(String[] args) {
+	public static void main(String[] args) {
 
-    // Default Console (must be imported if not in comp110 package)
-    Console.out.print("Hello, world");
+		// Default Console (must be imported if not in comp110 package)
+		Console.out.print("Hello, world");
 
-    if (!Console.out.promptBoolean("Proceed? (true or false)")) {
-      Console.out.print("goodbye.");
-      return;
-    }
+		Console.out.alert("OK?");
 
-    Console console = new Console("Another window");
-    console.speed(0.1);
-    console.print(console);
-    console.print("Drag me over so you can see both consoles...");
+		Console.out.print(Console.out.confirm("Roll again?"));
 
-    String name = Console.out.promptString("First name") + " " + Console.out.promptString("Last name");
-    console.print("You entered: " + name);
+		Console.out.alert("OK!");
 
-    while (console.promptBoolean("Continue? (true/false)")) {
-      double x = console.promptDouble();
-      console.print(x * x);
-    }
+		Console.out.print("bye");
 
-    console.print("goodbye.");
-
-  }
+	}
 
 }

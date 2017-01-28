@@ -19,6 +19,22 @@ public class FXConsole implements IConsole {
 		_speed = speed;
 	}
 
+	public void alert(String message) {
+		ParsedFutureValue<Void> result = new ParsedFutureValue<>(Parser.forVoids());
+		run(() -> {
+			_shell.alert(message, result);
+		});
+		result.get();
+	}
+
+	public boolean confirm(String message) {
+		ParsedFutureValue<Boolean> result = new ParsedFutureValue<>(Parser.forBooleans());
+		run(() -> {
+			_shell.confirm(message, result);
+		});
+		return result.get();
+	}
+
 	public void print() {
 		run(() -> {
 			_shell.print();

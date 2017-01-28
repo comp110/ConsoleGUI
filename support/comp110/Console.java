@@ -45,6 +45,16 @@ public class Console implements IConsole {
 	}
 
 	@Override
+	public void alert(String message) {
+		_impl.alert(message);
+	}
+
+	@Override
+	public boolean confirm(String message) {
+		return _impl.confirm(message);
+	}
+
+	@Override
 	public void print() {
 		_impl.print();
 	}

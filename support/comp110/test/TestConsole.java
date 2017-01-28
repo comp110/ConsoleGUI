@@ -29,6 +29,13 @@ public class TestConsole implements IConsole {
 	public void speed(double speed) {
 	}
 
+	public void alert(String message) {
+	}
+
+	public boolean confirm(String message) {
+		return false;
+	}
+
 	public void print(String s) {
 		Print<String> actual = new Print<String>(s);
 		_actual.log(actual);
