@@ -2,8 +2,8 @@ package comp110.test.methods;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.containsString;
 
 import comp110.test.values.Value;
 
@@ -38,14 +38,22 @@ public class Prompt extends MethodCall {
 		return _response;
 	}
 
-	public void print() {
-		System.out.println("(Prompt) " + _prompt + " " + _response);
+	public String toString() {
+	  if (_response != null) {
+		  return "(Prompt) " + _prompt + " " + _response;
+	  } else {
+	    return "(Prompt) " + _prompt;
+	  }
 	}
+	
+  public void print() {
+    System.out.println(this);
+  }
 
 	public void test(MethodCall actual) {
-		assertThat("Prompted user for input", actual, is(instanceOf(Prompt.class)));
+		assertThat("Prompted user for input", actual, instanceOf(Prompt.class));
 		Prompt actualPrompt = (Prompt) actual;
-		assertThat("Prompt matches expected string", actualPrompt._prompt, is(equalTo(_prompt)));
+		assertThat("Prompt text must contain the expected String", actualPrompt._prompt.toLowerCase(), containsString(_prompt.toLowerCase()));
 	}
 
 	public void setResponse(Value response) {

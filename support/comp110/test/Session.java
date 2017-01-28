@@ -22,10 +22,18 @@ public class Session {
 	public void log(MethodCall m) {
 		_calls.add(m);
 	}
+	
+	public boolean hasNext() {
+	  return _t < _calls.size();
+	}
+	
+	public MethodCall next() {
+	  return _calls.get(_t++);
+	}
 
 	public MethodCall test(MethodCall actual) {
-		if (_t < _calls.size()) {
-			MethodCall expected = _calls.get(_t++);
+		if (hasNext()) {
+			MethodCall expected = next();
 			expected.test(actual);
 			return expected;
 		} else {
@@ -38,9 +46,15 @@ public class Session {
 	}
 
 	public void print() {
-		for (MethodCall m : _calls) {
-			m.print();
-		}
+		System.out.println(this);
+	}
+	
+	public String toString() {
+	  String result = "";
+	  for (MethodCall m : _calls) {
+	    result += m.toString() + "\n";
+	  }
+	  return result;
 	}
 
 }

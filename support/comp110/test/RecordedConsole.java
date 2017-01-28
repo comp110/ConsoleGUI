@@ -3,6 +3,7 @@ package comp110.test;
 import comp110.test.methods.Print;
 import comp110.test.methods.Prompt;
 import comp110.test.values.DoubleValue;
+import comp110.test.values.StringTester;
 
 public class RecordedConsole {
 
@@ -26,6 +27,10 @@ public class RecordedConsole {
 
 	public void print(String s) {
 		_expected.log(new Print<String>(s));
+	}
+	
+	public void print(StringTester s) {
+	  _expected.log(new Print<StringTester>(s));
 	}
 
 	public void print(int i) {
