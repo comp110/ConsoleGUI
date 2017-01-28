@@ -28,6 +28,12 @@ public class TestConsole implements IConsole {
 
 	public void speed(double speed) {
 	}
+	
+	public void endOfTest() {
+	  if(_expected.hasNext()) {
+	    throw new AssertionError("Output Missing\nExpected: " + _expected.next().toString());
+	  }
+	}
 
 	public void alert(String message) {
 	}
