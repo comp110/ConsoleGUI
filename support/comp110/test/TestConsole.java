@@ -1,10 +1,13 @@
 package comp110.test;
 
 import comp110.IConsole;
+import comp110.test.methods.Alert;
 import comp110.test.methods.MethodCall;
 import comp110.test.methods.Print;
 import comp110.test.methods.Prompt;
 import comp110.test.values.DoubleValue;
+import comp110.test.values.IntValue;
+import comp110.test.values.StringValue;
 
 public class TestConsole implements IConsole {
 
@@ -28,14 +31,21 @@ public class TestConsole implements IConsole {
 
 	public void speed(double speed) {
 	}
-	
+
+	public void endOfProgram() {
+
+	}
+
 	public void endOfTest() {
-	  if(_expected.hasNext()) {
-	    throw new AssertionError("Output Missing\nExpected: " + _expected.next().toString());
-	  }
+		if (_expected.hasNext()) {
+			throw new AssertionError("Output Missing\nExpected: " + _expected.next().toString());
+		}
 	}
 
 	public void alert(String message) {
+		Alert<String> actual = new Alert<String>(message);
+		_actual.log(actual);
+		_expected.test(actual);
 	}
 
 	public boolean confirm(String message) {
@@ -92,17 +102,22 @@ public class TestConsole implements IConsole {
 
 	@Override
 	public int promptInt() {
-		return 0;
+		return promptInt("");
 	}
 
 	@Override
 	public int promptInt(String prompt) {
-		return 0;
+		Prompt actual = new Prompt(prompt);
+		_actual.log(actual);
+		Prompt expected = (Prompt) _expected.test(actual);
+		IntValue expectedValue = (IntValue) expected.getValue();
+		actual.setResponse(expectedValue);
+		return expectedValue.get();
 	}
 
 	@Override
 	public double promptDouble() {
-		return 0;
+		return promptDouble("");
 	}
 
 	@Override
@@ -117,12 +132,17 @@ public class TestConsole implements IConsole {
 
 	@Override
 	public String promptString() {
-		return null;
+		return promptString("");
 	}
 
 	@Override
 	public String promptString(String prompt) {
-		return null;
+		Prompt actual = new Prompt(prompt);
+		_actual.log(actual);
+		Prompt expected = (Prompt) _expected.test(actual);
+		StringValue expectedValue = (StringValue) expected.getValue();
+		actual.setResponse(expectedValue);
+		return expectedValue.get();
 	}
 
 }

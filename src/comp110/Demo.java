@@ -7,14 +7,13 @@ public class Demo {
 		// Default Console (must be imported if not in comp110 package)
 		Console.out.print("Hello, world");
 
-		Console.out.alert("OK?");
+		Console.out.alert("This is an alert.");
 
-		Console.out.print(Console.out.confirm("Roll again?"));
-
-		Console.out.alert("OK!");
+		while (Console.out.confirm("Continue?")) {
+			Console.out.print(":D");
+		}
 
 		Console.out.print("bye");
-
 	}
 
 }

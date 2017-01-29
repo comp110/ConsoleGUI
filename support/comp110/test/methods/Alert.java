@@ -6,16 +6,16 @@ import static org.junit.Assert.assertThat;
 
 import comp110.test.values.StringTester;
 
-public class Print<T> extends MethodCall {
+public class Alert<T> extends MethodCall {
 
 	private T _value;
 
-	public Print(T value) {
+	public Alert(T value) {
 		_value = value;
 	}
 
 	public String toString() {
-		return _value.toString();
+		return "(Alert) " + _value.toString();
 	}
 
 	public void print() {
@@ -23,16 +23,16 @@ public class Print<T> extends MethodCall {
 	}
 
 	public void test(MethodCall actual) {
-		assertThat("Printed output", actual, instanceOf(Print.class));
-		Print<T> actualPrint = (Print<T>) actual;
+		assertThat("Alert", actual, instanceOf(Alert.class));
+		Alert<T> actualAlert = (Alert<T>) actual;
 		if (_value instanceof StringTester) {
 			StringTester tester = (StringTester) _value;
-			if (tester.test(actualPrint._value.toString())) {
+			if (tester.test(actualAlert._value.toString())) {
 				return; // Short-circuit
 			}
 		}
-		assertThat("Print output must match expected output. Check: spelling, punctuation, capitalization.",
-		    actualPrint._value.toString(), equalTo(_value.toString()));
+		assertThat("Alerted must match expected output. Check: spelling, punctuation, capitalization.",
+		    actualAlert._value.toString(), equalTo(_value.toString()));
 	}
 
 }
