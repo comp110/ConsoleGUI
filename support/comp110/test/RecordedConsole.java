@@ -33,6 +33,10 @@ public class RecordedConsole {
 		_expected.log(new Alert(s));
 	}
 
+	public void alert(StringTester s) {
+		_expected.log(new Alert(s));
+	}
+
 	public void print(String s) {
 		_expected.log(new Print<String>(s));
 	}

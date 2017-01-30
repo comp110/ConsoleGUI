@@ -35,6 +35,10 @@ public class Session {
 		return _calls.size();
 	}
 
+	public MethodCall get(int n) {
+		return _calls.get(n);
+	}
+
 	public int getStep() {
 		return _t;
 	}
