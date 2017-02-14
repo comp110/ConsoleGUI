@@ -18,7 +18,6 @@ public class Console implements IConsole {
 
 	static {
 		out = ConsoleFactory.getConsole();
-		out.setTitle("COMP110 Console");
 	}
 
 	public Console(String title) {
@@ -32,6 +31,10 @@ public class Console implements IConsole {
 
 	public String toString() {
 		return _impl.toString();
+	}
+
+	public void close() {
+		_impl.close();
 	}
 
 	@Override

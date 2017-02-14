@@ -13,6 +13,15 @@ public class FXConsole implements IConsole {
 
 	public void setTitle(String title) {
 		_title = title;
+		run(() -> {
+			_shell.setTitle(title);
+		});
+	}
+
+	public void close() {
+		run(() -> {
+			_shell.close();
+		});
 	}
 
 	public void speed(double speed) {

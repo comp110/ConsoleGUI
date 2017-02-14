@@ -4,6 +4,8 @@ public interface IConsole {
 
 	void setTitle(String title);
 
+	void close();
+
 	void speed(double speed);
 
 	void print();

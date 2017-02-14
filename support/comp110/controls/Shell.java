@@ -5,8 +5,10 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class Shell implements Controller {
 
@@ -21,10 +23,24 @@ public class Shell implements Controller {
 	}
 
 	public void handleClose() {
-		Node last = _output.getChildren().get(_output.getChildren().size() - 1);
-		if (last instanceof Prompt) {
-			((Prompt<?>) last).handleClose();
+		if (_output.getChildren().size() > 0) {
+			Node last = _output.getChildren().get(_output.getChildren().size() - 1);
+			if (last instanceof Prompt) {
+				((Prompt<?>) last).handleClose();
+			} else if (last instanceof Confirm) {
+				((Confirm) last).handleClose();
+			} else if (last instanceof Alert) {
+				((Alert) last).handleClose();
+			}
 		}
+	}
+
+	public void setTitle(String title) {
+		((Stage) _scroll.getScene().getWindow()).setTitle(title);
+	}
+
+	public void close() {
+		((Stage) _scroll.getScene().getWindow()).close();
 	}
 
 	public void alert(String message, ParsedFutureValue<Void> future) {
